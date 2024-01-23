@@ -6,13 +6,15 @@ from doctor_resource import DoctorResource, DoctorsResource
 from patient_resource import PatientResource, PatientsResource
 from disease_resource import DiseaseResource
 from appointment_resource import AppointmentResource, AppointmentsResource  # Adjusted import
-from models import db
+from models import db, User, Authorization, Doctor, Patient, Symptom, Disease, Appointment
+from flask_migrate import Migrate 
 
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///health_database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
+migrate = Migrate(app, db)
 api = Api(app)
 
 # Add API resources here using the resource classes
