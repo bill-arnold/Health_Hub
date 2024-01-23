@@ -1,6 +1,7 @@
 from flask_restful import Resource, reqparse
 from models import db, User
 from schema import UserSchema
+from flask import jsonify
 
 user_schema = UserSchema()
 users_schema = UserSchema(many=True)
@@ -8,7 +9,7 @@ users_schema = UserSchema(many=True)
 class UserResource(Resource):
     def get(self, user_id):
         user = User.query.get_or_404(user_id)
-        return user_schema.jsonify(user)
+        return jsonify(user_schema.dump(user))
 
     def put(self, user_id):
         user = User.query.get_or_404(user_id)
@@ -24,7 +25,7 @@ class UserResource(Resource):
         user.password = args['password'] or user.password
 
         db.session.commit()
-        return user_schema.jsonify(user)
+        return jsonify(user_schema.dump(user))
 
     def delete(self, user_id):
         user = User.query.get_or_404(user_id)
@@ -35,7 +36,7 @@ class UserResource(Resource):
 class UsersResource(Resource):
     def get(self):
         users = User.query.all()
-        return users_schema.jsonify(users)
+        return jsonify(users_schema.dump(users))
 
     def post(self):
         parser = reqparse.RequestParser()
@@ -47,4 +48,4 @@ class UsersResource(Resource):
         new_user = User(username=args['username'], email=args['email'], password=args['password'])
         db.session.add(new_user)
         db.session.commit()
-        return user_schema.jsonify(new_user), 201
+        return jsonify(user_schema.dump(new_user)), 201

@@ -2,6 +2,7 @@ from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 from marshmallow import fields
 from models import User, Authorization, Doctor, Patient, Symptom, Disease, Appointment
 
+
 class UserSchema(SQLAlchemyAutoSchema):
     class Meta:
         model = User
@@ -25,10 +26,9 @@ class SymptomSchema(SQLAlchemyAutoSchema):
         model = Symptom
 
 class DiseaseSchema(SQLAlchemyAutoSchema):
-    symptoms = fields.Nested(SymptomSchema, only=('name',))
-
-    class Meta:
-        model = Disease
+        class Meta:
+            model = Disease
+           
 class AppointmentSchema(SQLAlchemyAutoSchema):
     doctor = fields.Nested(DoctorSchema)
     patient = fields.Nested(PatientSchema)

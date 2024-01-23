@@ -1,6 +1,7 @@
 from flask_restful import Resource, reqparse
 from models import db, Symptom
 from schema import SymptomSchema
+from flask import jsonify
 
 symptom_schema = SymptomSchema()
 symptoms_schema = SymptomSchema(many=True)
@@ -8,7 +9,7 @@ symptoms_schema = SymptomSchema(many=True)
 class SymptomResource(Resource):
     def get(self, symptom_id):
         symptom = Symptom.query.get_or_404(symptom_id)
-        return symptom_schema.jsonify(symptom)
+        return jsonify(symptom_schema.dump(symptom))
 
     def put(self, symptom_id):
         symptom = Symptom.query.get_or_404(symptom_id)
@@ -22,7 +23,7 @@ class SymptomResource(Resource):
         symptom.severity = args['severity'] or symptom.severity
 
         db.session.commit()
-        return symptom_schema.jsonify(symptom)
+        return jsonify(symptom_schema.dump(symptom))
 
     def delete(self, symptom_id):
         symptom = Symptom.query.get_or_404(symptom_id)
@@ -33,7 +34,7 @@ class SymptomResource(Resource):
 class SymptomsResource(Resource):
     def get(self):
         symptoms = Symptom.query.all()
-        return symptoms_schema.jsonify(symptoms)
+        return jsonify(symptoms_schema.dump(symptoms))
 
     def post(self):
         parser = reqparse.RequestParser()
@@ -48,4 +49,4 @@ class SymptomsResource(Resource):
 
         db.session.add(new_symptom)
         db.session.commit()
-        return symptom_schema.jsonify(new_symptom), 201
+        return jsonify(symptom_schema.dump(new_symptom)), 201

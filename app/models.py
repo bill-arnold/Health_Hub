@@ -46,14 +46,13 @@ class Symptom(db.Model, SerializerMixin):
     severity = db.Column(db.String(50), nullable=False)
 
 class Disease(db.Model, SerializerMixin):
-    __tablename__="disease"
+    __tablename__ = "disease"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     symptoms_id = db.Column(db.Integer, db.ForeignKey('symptoms.id'), nullable=False)
     treatment = db.Column(db.Text, nullable=False)
 
     symptoms = db.relationship('Symptom', backref=db.backref('diseases', lazy=True))
-
 class Appointment(db.Model, SerializerMixin):
     __tablename__ = "appointment"
     id = db.Column(db.Integer, primary_key=True)
@@ -61,7 +60,8 @@ class Appointment(db.Model, SerializerMixin):
     patient_id = db.Column(db.Integer, db.ForeignKey('patients.id'), nullable=False)
     disease_id = db.Column(db.Integer, db.ForeignKey('disease.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable=False)
-    date = db.Column(db.Date)
+    date = db.Column(db.Date, default=datetime.utcnow, nullable=False)
+
 
     doctor = db.relationship('Doctor', backref=db.backref('appointments', lazy=True))
     patient = db.relationship('Patient', backref=db.backref('appointments', lazy=True))

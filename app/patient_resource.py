@@ -1,6 +1,7 @@
 from flask_restful import Resource, reqparse
 from models import db, Patient
 from schema import PatientSchema
+from flask import jsonify
 
 patient_schema = PatientSchema()
 patients_schema = PatientSchema(many=True)
@@ -8,7 +9,7 @@ patients_schema = PatientSchema(many=True)
 class PatientResource(Resource):
     def get(self, patient_id):
         patient = Patient.query.get_or_404(patient_id)
-        return patient_schema.jsonify(patient)
+        return jsonify(patient_schema.dump(patient))
 
     def put(self, patient_id):
         patient = Patient.query.get_or_404(patient_id)
@@ -28,7 +29,7 @@ class PatientResource(Resource):
         patient.address = args['address'] or patient.address
 
         db.session.commit()
-        return patient_schema.jsonify(patient)
+        return jsonify(patient_schema.dump(patient))
 
     def delete(self, patient_id):
         patient = Patient.query.get_or_404(patient_id)
@@ -39,7 +40,7 @@ class PatientResource(Resource):
 class PatientsResource(Resource):
     def get(self):
         patients = Patient.query.all()
-        return patients_schema.jsonify(patients)
+        return jsonify(patients_schema.dump(patients))
 
     def post(self):
         parser = reqparse.RequestParser()
@@ -54,4 +55,4 @@ class PatientsResource(Resource):
                               contact_number=args['contact_number'], address=args['address'])
         db.session.add(new_patient)
         db.session.commit()
-        return patient_schema.jsonify(new_patient), 201
+        return jsonify(patient_schema.dump(new_patient)), 201

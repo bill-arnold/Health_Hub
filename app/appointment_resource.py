@@ -1,6 +1,7 @@
 from flask_restful import Resource, reqparse
-from models import db, Appointment
+from flask import jsonify  # Import jsonify from Flask
 from schema import AppointmentSchema
+from models import db, Appointment
 
 appointment_schema = AppointmentSchema()
 appointments_schema = AppointmentSchema(many=True)
@@ -8,7 +9,7 @@ appointments_schema = AppointmentSchema(many=True)
 class AppointmentResource(Resource):
     def get(self, appointment_id):
         appointment = Appointment.query.get_or_404(appointment_id)
-        return appointment_schema.jsonify(appointment)
+        return jsonify(appointment_schema.dump(appointment))
 
     def put(self, appointment_id):
         appointment = Appointment.query.get_or_404(appointment_id)
@@ -28,7 +29,7 @@ class AppointmentResource(Resource):
         appointment.date = args['date'] or appointment.date
 
         db.session.commit()
-        return appointment_schema.jsonify(appointment)
+        return jsonify(appointment_schema.dump(appointment))
 
     def delete(self, appointment_id):
         appointment = Appointment.query.get_or_404(appointment_id)
@@ -39,7 +40,7 @@ class AppointmentResource(Resource):
 class AppointmentsResource(Resource):
     def get(self):
         appointments = Appointment.query.all()
-        return appointments_schema.jsonify(appointments)
+        return jsonify(appointments_schema.dump(appointments))
 
     def post(self):
         parser = reqparse.RequestParser()
@@ -60,4 +61,4 @@ class AppointmentsResource(Resource):
 
         db.session.add(new_appointment)
         db.session.commit()
-        return appointment_schema.jsonify(new_appointment), 201
+        return jsonify(appointment_schema.dump(new_appointment)), 201
