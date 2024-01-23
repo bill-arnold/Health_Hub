@@ -20,6 +20,7 @@ class AuthorizationResource(Resource):
         args = parser.parse_args()
 
         authorization = Authorization.query.get_or_404(authorization_id)
+        
 
         authorization.user_id = args['user_id'] or authorization.user_id
         authorization.role = args['role'] or authorization.role

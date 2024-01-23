@@ -5,7 +5,7 @@ from authorization_resource import AuthorizationResource, AuthorizationsResource
 from doctor_resource import DoctorResource, DoctorsResource
 from patient_resource import PatientResource, PatientsResource
 from disease_resource import DiseaseResource
-from doctor_patient_resource import DoctorPatientResource, DoctorPatientsResource
+from appointment_resource import AppointmentResource, AppointmentsResource  # Adjusted import
 from models import db
 
 app = Flask(__name__)
@@ -31,9 +31,8 @@ api.add_resource(PatientsResource, '/patients')
 api.add_resource(DiseaseResource, '/disease/<int:disease_id>')
 api.add_resource(DiseaseResource, '/diseases', endpoint='diseases_resource')
 
-
-api.add_resource(DoctorPatientResource, '/doctorpatient/<int:dp_id>')
-api.add_resource(DoctorPatientsResource, '/doctorpatients')
+api.add_resource(AppointmentResource, '/appointment/<int:appointment_id>')  # Adjusted resource
+api.add_resource(AppointmentsResource, '/appointments')  # Adjusted resource
 
 if __name__ == '__main__':
     app.run(debug=True)

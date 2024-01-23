@@ -5,6 +5,7 @@ from sqlalchemy_serializer import SerializerMixin
 db = SQLAlchemy()
 
 class User(db.Model, SerializerMixin):
+    __tablename__="user"
     user_id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255), unique=True, nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
@@ -12,6 +13,7 @@ class User(db.Model, SerializerMixin):
     registration_date = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
 
 class Authorization(db.Model, SerializerMixin):
+    __tablename__="authorization"
     authorization_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable=False)
     role = db.Column(db.String(255), nullable=False)
@@ -20,6 +22,7 @@ class Authorization(db.Model, SerializerMixin):
     user = db.relationship('User', backref=db.backref('authorizations', lazy=True))
 
 class Doctor(db.Model, SerializerMixin):
+    __tablename__="doctors"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     specialization = db.Column(db.String(255), nullable=False)
@@ -28,6 +31,7 @@ class Doctor(db.Model, SerializerMixin):
     contact_number = db.Column(db.Integer, nullable=False)
 
 class Patient(db.Model, SerializerMixin):
+    __tablename__="patients"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     age = db.Column(db.Integer, nullable=False)
@@ -35,21 +39,32 @@ class Patient(db.Model, SerializerMixin):
     contact_number = db.Column(db.Integer, nullable=False)
     address = db.Column(db.Integer, nullable=False)
 
+class Symptom(db.Model, SerializerMixin):
+    __tablename__="symptoms"
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.Text, nullable=False)
+    severity = db.Column(db.String(50), nullable=False)
+
 class Disease(db.Model, SerializerMixin):
+    __tablename__="disease"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
-    severity = db.Column(db.String(50), nullable=False)
-    symptoms = db.Column(db.Text, nullable=False)
+    symptoms_id = db.Column(db.Integer, db.ForeignKey('symptoms.id'), nullable=False)
     treatment = db.Column(db.Text, nullable=False)
 
-class DoctorPatient(db.Model, SerializerMixin):
+    symptoms = db.relationship('Symptom', backref=db.backref('diseases', lazy=True))
+
+class Appointment(db.Model, SerializerMixin):
+    __tablename__ = "appointment"
     id = db.Column(db.Integer, primary_key=True)
-    doctor_id = db.Column(db.Integer, db.ForeignKey('doctor.id'), nullable=False)
-    patient_id = db.Column(db.Integer, db.ForeignKey('patient.id'), nullable=False)
+    doctor_id = db.Column(db.Integer, db.ForeignKey('doctors.id'), nullable=False)
+    patient_id = db.Column(db.Integer, db.ForeignKey('patients.id'), nullable=False)
     disease_id = db.Column(db.Integer, db.ForeignKey('disease.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable=False)
+    date = db.Column(db.Date)
 
-    doctor = db.relationship('Doctor', backref=db.backref('doctor_patients', lazy=True))
-    patient = db.relationship('Patient', backref=db.backref('doctor_patients', lazy=True))
-    disease = db.relationship('Disease', backref=db.backref('doctor_patients', lazy=True))
-    user = db.relationship('User', backref=db.backref('doctor_patients', lazy=True))
+    doctor = db.relationship('Doctor', backref=db.backref('appointments', lazy=True))
+    patient = db.relationship('Patient', backref=db.backref('appointments', lazy=True))
+    disease = db.relationship('Disease', backref=db.backref('appointments', lazy=True))
+    user = db.relationship('User', backref=db.backref('appointments', lazy=True))
+
