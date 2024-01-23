@@ -25,15 +25,14 @@ class SymptomSchema(SQLAlchemyAutoSchema):
         model = Symptom
 
 class DiseaseSchema(SQLAlchemyAutoSchema):
-    symptoms = fields.Nested(SymptomSchema, many=True)
+    symptoms = fields.Nested(SymptomSchema, only=('name',))
 
     class Meta:
         model = Disease
-
 class AppointmentSchema(SQLAlchemyAutoSchema):
     doctor = fields.Nested(DoctorSchema)
     patient = fields.Nested(PatientSchema)
-    disease = fields.Nested(DiseaseSchema)
+    disease = fields.Nested(DiseaseSchema, exclude=('formatted_name',))
     user = fields.Nested(UserSchema)
 
     class Meta:

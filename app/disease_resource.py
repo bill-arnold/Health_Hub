@@ -1,6 +1,7 @@
-from flask_restful import Resource, reqparse
+from flask_restful import Resource, reqparse, Api
 from models import db, Disease
 from schema import DiseaseSchema
+from flask import jsonify
 
 disease_schema = DiseaseSchema()
 diseases_schema = DiseaseSchema(many=True)
@@ -8,7 +9,7 @@ diseases_schema = DiseaseSchema(many=True)
 class DiseaseResource(Resource):
     def get(self, disease_id):
         disease = Disease.query.get_or_404(disease_id)
-        return disease_schema.jsonify(disease)
+        return jsonify(disease_schema.dump(disease))
 
     def put(self, disease_id):
         disease = Disease.query.get_or_404(disease_id)
@@ -24,7 +25,7 @@ class DiseaseResource(Resource):
         disease.treatment = args['treatment'] or disease.treatment
 
         db.session.commit()
-        return disease_schema.jsonify(disease)
+        return jsonify(disease_schema.dump(disease))
 
     def delete(self, disease_id):
         disease = Disease.query.get_or_404(disease_id)
@@ -35,7 +36,7 @@ class DiseaseResource(Resource):
 class DiseasesResource(Resource):
     def get(self):
         diseases = Disease.query.all()
-        return diseases_schema.jsonify(diseases)
+        return jsonify(diseases_schema.dump(diseases))
 
     def post(self):
         parser = reqparse.RequestParser()
@@ -47,4 +48,4 @@ class DiseasesResource(Resource):
         new_disease = Disease(name=args['name'], symptoms_id=args['symptoms_id'], treatment=args['treatment'])
         db.session.add(new_disease)
         db.session.commit()
-        return disease_schema.jsonify(new_disease), 201
+        return jsonify(disease_schema.dump(new_disease)), 201
