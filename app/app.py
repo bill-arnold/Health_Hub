@@ -10,6 +10,7 @@ from appointment_resource import AppointmentResource, AppointmentsResource
 from symptom_resource import SymptomResource, SymptomsResource  # Added import
 from models import db, User, Authorization, Doctor, Patient, Symptom, Disease, Appointment
 from flask_migrate import Migrate
+from flask_cors import CORS
 #from flask_bcrypt import Bcrypt 
 
 app = Flask(__name__)
@@ -22,7 +23,7 @@ jwt = JWTManager(app)
 db.init_app(app)
 migrate = Migrate(app, db)
 api = Api(app)
-
+CORS(app)
 
 # Add API resources here using the resource classes
 api.add_resource(UserResource, '/user/<int:user_id>')
