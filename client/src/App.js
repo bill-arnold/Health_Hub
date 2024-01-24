@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React from 'react';
+import Dashboard from './components/Dashboard';
+import DetailView from './components/DetailView';
+import InteractiveForm from './components/InteractiveForm';
+import ListView from './components/ListView';
+import Login from './components/Login';
+import Register from './components/Register';
+import ScheduleAppointment from './components/ScheduleAppointment';
+import Search from './components/Search';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/" exact component={Dashboard} />
+        {/* Add other routes here */}
+      </Switch>
+    </Router>
   );
 }
 

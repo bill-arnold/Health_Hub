@@ -1,10 +1,10 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from sqlalchemy_serializer import SerializerMixin
+#from sqlalchemy_serializer import SerializerMixin
 
 db = SQLAlchemy()
 
-class User(db.Model, SerializerMixin):
+class User(db.Model):
     __tablename__="user"
     user_id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255), unique=True, nullable=False)
@@ -12,7 +12,7 @@ class User(db.Model, SerializerMixin):
     password = db.Column(db.String(255), nullable=False)
     registration_date = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
 
-class Authorization(db.Model, SerializerMixin):
+class Authorization(db.Model):
     __tablename__="authorization"
     authorization_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable=False)
@@ -21,7 +21,7 @@ class Authorization(db.Model, SerializerMixin):
 
     user = db.relationship('User', backref=db.backref('authorizations', lazy=True))
 
-class Doctor(db.Model, SerializerMixin):
+class Doctor(db.Model):
     __tablename__="doctors"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
@@ -30,7 +30,7 @@ class Doctor(db.Model, SerializerMixin):
     location = db.Column(db.String(255), nullable=False)
     contact_number = db.Column(db.Integer, nullable=False)
 
-class Patient(db.Model, SerializerMixin):
+class Patient(db.Model):
     __tablename__="patients"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
@@ -39,13 +39,13 @@ class Patient(db.Model, SerializerMixin):
     contact_number = db.Column(db.Integer, nullable=False)
     address = db.Column(db.Integer, nullable=False)
 
-class Symptom(db.Model, SerializerMixin):
+class Symptom(db.Model):
     __tablename__="symptoms"
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.Text, nullable=False)
     severity = db.Column(db.String(50), nullable=False)
 
-class Disease(db.Model, SerializerMixin):
+class Disease(db.Model):
     __tablename__ = "disease"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
@@ -53,7 +53,7 @@ class Disease(db.Model, SerializerMixin):
     treatment = db.Column(db.Text, nullable=False)
 
     symptoms = db.relationship('Symptom', backref=db.backref('diseases', lazy=True))
-class Appointment(db.Model, SerializerMixin):
+class Appointment(db.Model):
     __tablename__ = "appointment"
     id = db.Column(db.Integer, primary_key=True)
     doctor_id = db.Column(db.Integer, db.ForeignKey('doctors.id'), nullable=False)
