@@ -67,6 +67,7 @@ export const addDoctor = async (doctorData) => {
     body: JSON.stringify(doctorData),
   });
   return handleResponse(response);
+ 
 };
 
 // Add a patient
@@ -163,3 +164,14 @@ export const login = async (credentials) => {
 
 
 // Other API functions can be added as needed
+
+
+// Delete an appointment
+export const deleteAppointment = async (appointmentId) => {
+  const response = await fetch(`${API_BASE_URL}/appointments/${appointmentId}`, {
+    method: 'DELETE',
+  });
+  return handleResponse(response);
+};
+
+// ... (other functions)

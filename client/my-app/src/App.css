@@ -72,4 +72,66 @@ ul li {
   margin-bottom: 10px;
 }
 
+.main-header {
+  background-color: #3498db;
+  padding: 10px;
+  text-align: center;
+}
+
+.main-nav {
+  list-style: none;
+  padding: 0;
+}
+
+.nav-list {
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav-item {
+  margin: 0 10px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+}
+
+.appointments-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.appointments-heading {
+  color: #2ecc71;
+}
+
+.search-form {
+  margin-bottom: 20px;
+}
+
+.loading-message {
+  font-style: italic;
+}
+
+.appointments-list {
+  list-style: none;
+  padding: 0;
+}
+
+.appointment-item {
+  border: 1px solid #ccc;
+  margin: 10px 0;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete-button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
 /* Add more styles as needed */

@@ -6,14 +6,15 @@ import Header from "@src/components/Header";
 const Appointments = () => {
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    // Fetch appointments from the backend when the component mounts
+    // Fetch appointments from the backend when the component mounts or when the search term changes
     fetchAppointments();
-  }, []);
+  }, [searchTerm]);
 
   const fetchAppointments = () => {
-    fetch('http://127.0.0.1:5555/appointments')
+    fetch(`http://127.0.0.1:5555/appointments?search=${searchTerm}`)
       .then(response => response.json())
       .then(data => {
         setAppointments(data);
@@ -36,27 +37,38 @@ const Appointments = () => {
       .catch(error => console.error('Error deleting appointment:', error));
   };
 
-  const handleNewAppointment = (newAppointment) => {
-    // Add the new appointment to the list of appointments
-    setAppointments((prevAppointments) => [newAppointment, ...prevAppointments]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Trigger a callback to fetch and update the list of appointments
+    fetchAppointments();
   };
 
   return (
-    <div>
+    <div className="appointments-container">
       <Header/>
-      <h2>Appointments</h2>
-      <AppointmentForm onAppointmentAdded={handleNewAppointment} />
+      <h2 className="appointments-heading">Appointments</h2>
+      <AppointmentForm onAppointmentAdded={fetchAppointments} />
+
+      <form onSubmit={handleSubmit} className="appointments-heading">
+        <input
+          type="text"
+          placeholder="Search appointments..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <button type="submit">Submit</button>
+      </form>
 
       {loading ? (
-        <p>Loading appointments...</p>
+        <p className="loading-message">Loading appointments...</p>
       ) : (
-        <ul>
+        <ul className="appointments-list">
           {appointments.map(appointment => (
-            <li key={appointment.id}>
+            <li key={appointment.id} className="appointment-item">
               <div>
-                <p>Doctor: {appointment.doctorName}</p>
-                <p>Patient: {appointment.patientName}</p>
-                <p>Disease: {appointment.diseaseName}</p>
+                <p>Doctor: {appointment.doctor.name}</p>
+                <p>Patient: {appointment.patient.name}</p>
+                <p>Disease: {appointment.disease.name}</p>
                 <p>Date: {appointment.date}</p>
                 {/* Add more appointment details as needed */}
               </div>

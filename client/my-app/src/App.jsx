@@ -36,6 +36,9 @@ import Patients from "./components/pages/Patients";
 import Register from "./components/Auth/Register"; // Import your Register component
 import Login from "./components/Auth/Login";
 
+//import '@/components/index.css';
+
+
 const App = () => {
   return (
     <Router>

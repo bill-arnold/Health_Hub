@@ -1,32 +1,11 @@
 // components/DoctorForm.js
 import React, { useState } from 'react';
 
-const DoctorForm = ({ onNewDoctor }) => {
-  const [newDoctor, setNewDoctor] = useState({
-    name: '',
-    specialization: '',
-    experienceYears: '',
-    location: '',
-    contactNumber: '',
-  });
-
+const DoctorForm = ({ newDoctor, onNewDoctor, setNewDoctor }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Assuming you have a submitDoctor function in your api.js
-    submitDoctor(newDoctor)
-      .then((submittedDoctor) => {
-        // Clear the form and update the list of doctors with the new one
-        setNewDoctor({
-          name: '',
-          specialization: '',
-          experienceYears: '',
-          location: '',
-          contactNumber: '',
-        });
-        onNewDoctor(submittedDoctor);
-      })
-      .catch((error) => console.error('Error submitting doctor:', error));
+    // Invoke the onNewDoctor function with the newDoctor data
+    onNewDoctor(newDoctor);
   };
 
   return (
@@ -42,13 +21,17 @@ const DoctorForm = ({ onNewDoctor }) => {
       <input
         type="text"
         value={newDoctor.specialization}
-        onChange={(e) => setNewDoctor({ ...newDoctor, specialization: e.target.value })}
+        onChange={(e) =>
+          setNewDoctor({ ...newDoctor, specialization: e.target.value })
+        }
       />
       <label>Experience Years:</label>
       <input
         type="text"
         value={newDoctor.experienceYears}
-        onChange={(e) => setNewDoctor({ ...newDoctor, experienceYears: e.target.value })}
+        onChange={(e) =>
+          setNewDoctor({ ...newDoctor, experienceYears: e.target.value })
+        }
       />
       <label>Location:</label>
       <input
@@ -60,7 +43,9 @@ const DoctorForm = ({ onNewDoctor }) => {
       <input
         type="text"
         value={newDoctor.contactNumber}
-        onChange={(e) => setNewDoctor({ ...newDoctor, contactNumber: e.target.value })}
+        onChange={(e) =>
+          setNewDoctor({ ...newDoctor, contactNumber: e.target.value })
+        }
       />
       <button type="submit">Submit</button>
     </form>

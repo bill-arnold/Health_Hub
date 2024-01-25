@@ -16,6 +16,10 @@ class DoctorResource(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument('name', type=str)
         parser.add_argument('specialization', type=str)
+        parser.add_argument('contact_number', type=int)
+        parser.add_argument('experience', type=str)
+        parser.add_argument('location', type=str)
+        parser.add_argument('experienc_years', type=str)
         args = parser.parse_args()
 
         # Update doctor attributes
