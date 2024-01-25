@@ -1,7 +1,7 @@
 // Doctors.js
 import React, { useState, useEffect } from 'react';
 import { getDoctors, searchDoctors } from '../services/api';
-import DoctorForm from '@src/components/DoctorForm';
+import DoctorForm from '@/components/DoctorsForm';
 
 const Doctors = () => {
   const [doctors, setDoctors] = useState([]);

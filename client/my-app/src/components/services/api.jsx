@@ -137,4 +137,29 @@ export const deleteDoctor = async (doctorId) => {
   return handleResponse(response);
 };
 
+// User registration
+export const register = async (userData) => {
+  const response = await fetch(`${API_BASE_URL}/register`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userData),
+  });
+  return handleResponse(response);
+};
+
+// User login
+export const login = async (credentials) => {
+  const response = await fetch(`${API_BASE_URL}/users`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(credentials),
+  });
+  return handleResponse(response);
+};
+
+
 // Other API functions can be added as needed
