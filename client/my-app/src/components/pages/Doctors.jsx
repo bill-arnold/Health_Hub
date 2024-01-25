@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { getDoctors, searchDoctors } from '../services/api';
 import DoctorForm from '@/components/DoctorsForm';
+import Header from "@src/components/Header";
 
 const Doctors = () => {
   const [doctors, setDoctors] = useState([]);
@@ -24,7 +25,13 @@ const Doctors = () => {
 
   return (
     <div>
+      <Header/>
       <h2>Doctors</h2>
+         <img
+  src="https://ih1.redbubble.net/image.5081061387.3170/aps,504x498,medium,transparent-pad,600x600,f8f8f8.jpg"
+  alt="doctor Image"
+  style={{ width: '100%', maxWidth: '600px' }} // Adjust the width as needed
+/>
       <DoctorForm onNewDoctor={handleNewDoctor} />
 
       <input

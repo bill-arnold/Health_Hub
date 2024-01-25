@@ -28,7 +28,7 @@ import React from "react";
 //import React from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import Home from "./components/pages/Home";
+import Home from "@src/components/pages/Home";
 import Doctors from "./components/pages/Doctors";
 import Diseases from "./components/pages/Diseases";
 import Appointments from "./components/pages/Appointments";
@@ -40,7 +40,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/doctors" element={<Doctors />} />
         <Route path="/diseases" element={<Diseases />} />
         <Route path="/appointments" element={<Appointments />} />

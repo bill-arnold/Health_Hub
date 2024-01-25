@@ -139,7 +139,7 @@ export const deleteDoctor = async (doctorId) => {
 
 // User registration
 export const register = async (userData) => {
-  const response = await fetch(`${API_BASE_URL}/register`, {
+  const response = await fetch(`${API_BASE_URL}/users`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

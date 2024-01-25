@@ -1,6 +1,7 @@
 // Login.js
 import React, { useState } from 'react';
 import { login } from '../services/api';
+import Header from "@src/components/Header";
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -27,6 +28,7 @@ const Login = () => {
 
   return (
     <div>
+      <Header/>
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <label>Username:</label>

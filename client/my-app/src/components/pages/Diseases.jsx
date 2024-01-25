@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { getDiseases, searchDiseases } from '../services/api';
 import DiseaseForm from '@src/components/DiseaseForm';
+import Header from "@src/components/Header";
 
 const Diseases = () => {
   const [diseases, setDiseases] = useState([]);
@@ -24,6 +25,7 @@ const Diseases = () => {
 
   return (
     <div>
+      <Header/>
       <h2>Diseases</h2>
       <DiseaseForm onNewDisease={handleNewDisease} />
 

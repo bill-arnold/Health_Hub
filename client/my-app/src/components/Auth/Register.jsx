@@ -1,6 +1,7 @@
 // Register.js
 import React, { useState } from 'react';
 import { register } from '../services/api';
+import Header from "@src/components/Header";
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -35,6 +36,7 @@ const Register = () => {
 
   return (
     <div>
+      <Header/>
       <h2>Register</h2>
       <form onSubmit={handleRegister}>
         <label>Username:</label>

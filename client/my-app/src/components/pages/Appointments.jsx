@@ -1,6 +1,7 @@
 // pages/Appointments.js
 import React, { useState, useEffect } from 'react';
 import AppointmentForm from '@src/components/AppointmentForm';
+import Header from "@src/components/Header";
 
 const Appointments = () => {
   const [appointments, setAppointments] = useState([]);
@@ -42,6 +43,7 @@ const Appointments = () => {
 
   return (
     <div>
+      <Header/>
       <h2>Appointments</h2>
       <AppointmentForm onAppointmentAdded={handleNewAppointment} />
 
