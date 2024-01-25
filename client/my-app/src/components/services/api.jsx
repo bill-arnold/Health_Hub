@@ -1,5 +1,5 @@
 // api.js
-const API_BASE_URL = 'http://your-flask-backend-url'; // Replace with your actual backend URL
+const API_BASE_URL = 'http://127.0.0.1:5555'; // Replace with your actual backend URL
 
 const handleResponse = async (response) => {
   if (!response.ok) {

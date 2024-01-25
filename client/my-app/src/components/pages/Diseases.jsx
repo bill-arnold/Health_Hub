@@ -1,6 +1,7 @@
 // Diseases.js
 import React, { useState, useEffect } from 'react';
 import { getDiseases, searchDiseases } from '../services/api';
+import DiseaseForm from '@src/components/DiseaseForm';
 
 const Diseases = () => {
   const [diseases, setDiseases] = useState([]);
@@ -8,15 +9,24 @@ const Diseases = () => {
 
   useEffect(() => {
     if (searchTerm) {
-      searchDiseases();
+      searchDiseases(searchTerm)
+        .then((searchResults) => setDiseases(searchResults));
     } else {
-      getDiseases();
+      getDiseases()
+        .then((allDiseases) => setDiseases(allDiseases));
     }
   }, [searchTerm]);
+
+  const handleNewDisease = (newDisease) => {
+    // Add the new disease to the list of diseases
+    setDiseases((prevDiseases) => [newDisease, ...prevDiseases]);
+  };
 
   return (
     <div>
       <h2>Diseases</h2>
+      <DiseaseForm onNewDisease={handleNewDisease} />
+
       <input
         type="text"
         placeholder="Search diseases..."
@@ -25,7 +35,11 @@ const Diseases = () => {
       />
       <ul>
         {diseases.map((disease) => (
-          <li key={disease.id}>{disease.name}</li>
+          <li key={disease.id}>
+            <p>Name: {disease.name}</p>
+            <p>Symptoms: {disease.symptoms}</p>
+            <p>Treatment: {disease.treatment}</p>
+          </li>
         ))}
       </ul>
     </div>
