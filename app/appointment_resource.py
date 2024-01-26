@@ -3,6 +3,7 @@ from flask import jsonify  # Import jsonify from Flask
 from schema import AppointmentSchema
 from models import db, Appointment
 
+
 appointment_schema = AppointmentSchema()
 appointments_schema = AppointmentSchema(many=True)
 
@@ -30,7 +31,8 @@ class AppointmentResource(Resource):
 
         db.session.commit()
         return jsonify(appointment_schema.dump(appointment))
-
+    
+ 
     def delete(self, appointment_id):
         appointment = Appointment.query.get_or_404(appointment_id)
         db.session.delete(appointment)

@@ -1,4 +1,4 @@
-// api.js
+
 const API_BASE_URL = 'http://127.0.0.1:5555'; // Replace with your actual backend URL
 
 const handleResponse = async (response) => {
@@ -27,11 +27,16 @@ export const getPatients = async () => {
   return handleResponse(response);
 };
 
-// Search patients
-export const searchPatients = async (searchTerm) => {
-  const response = await fetch(`${API_BASE_URL}/patients?search=${searchTerm}`);
+
+// Change searchAppointments to getSearchAppointments
+export const searchAppointments = async (searchTerm) => {
+  const response = await fetch(`${API_BASE_URL}/appointments?search=${searchTerm}`);
+  console.log(response)
   return handleResponse(response);
+  
 };
+
+
 
 // Get all diseases
 export const getDiseases = async () => {
@@ -51,11 +56,6 @@ export const getAppointments = async () => {
   return handleResponse(response);
 };
 
-// Search appointments
-export const searchAppointments = async (searchTerm) => {
-  const response = await fetch(`${API_BASE_URL}/appointments?search=${searchTerm}`);
-  return handleResponse(response);
-};
 
 // Add a doctor
 export const addDoctor = async (doctorData) => {
@@ -118,6 +118,9 @@ export const updatePatient = async (patientId, updatedData) => {
   return handleResponse(response);
 };
 
+
+
+
 // Update a disease
 export const updateDisease = async (diseaseId, updatedData) => {
   const response = await fetch(`${API_BASE_URL}/diseases/${diseaseId}`, {
@@ -171,6 +174,24 @@ export const deleteAppointment = async (appointmentId) => {
   const response = await fetch(`${API_BASE_URL}/appointments/${appointmentId}`, {
     method: 'DELETE',
   });
+  return handleResponse(response);
+};
+
+// Add a function to submit appointments in api.jsx
+export const submitAppointment = async (appointmentData) => {
+  const response = await fetch(`${API_BASE_URL}/appointments`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(appointmentData),
+  });
+  return handleResponse(response);
+};
+
+// api.jsx
+export const searchPatients = async (searchTerm) => {
+  const response = await fetch(`${API_BASE_URL}/patients?search=${searchTerm}`);
   return handleResponse(response);
 };
 

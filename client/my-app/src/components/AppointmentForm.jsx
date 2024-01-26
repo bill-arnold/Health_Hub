@@ -1,6 +1,6 @@
 // components/AppointmentForm.jsx
 import React, { useState, useEffect } from 'react';
-import { getDoctors, getPatients, getDiseases } from '@/components/services/api';
+import { getDoctors, getPatients, getDiseases, submitAppointment } from '@/components/services/api';
 
 const AppointmentForm = ({ onAppointmentAdded }) => {
   const [formData, setFormData] = useState({
@@ -45,15 +45,15 @@ const AppointmentForm = ({ onAppointmentAdded }) => {
     // Assuming you have a submitAppointment function in your api.js
     submitAppointment(formData)
       .then((submittedAppointment) => {
-        // Clear the form and update the list of appointments
+        // Clear the form and trigger a callback to update the list of appointments
         setFormData({
           doctorId: '',
           patientId: '',
           diseaseId: '',
           date: '',
         });
-        // Trigger a callback to fetch and update the list of appointments in the parent component
-        onAppointmentAdded();
+        // Trigger the callback only if it's provided (for adding new appointment)
+        onAppointmentAdded && onAppointmentAdded();
       })
       .catch((error) => console.error('Error submitting appointment:', error));
   };
@@ -62,44 +62,7 @@ const AppointmentForm = ({ onAppointmentAdded }) => {
     <form onSubmit={handleSubmit}>
       <h3>Schedule Appointment</h3>
       
-      <label>
-        Doctor:
-        <select
-          value={formData.doctorId}
-          onChange={(e) => setFormData({ ...formData, doctorId: e.target.value })}
-        >
-          <option value="" disabled>Select Doctor</option>
-          {doctors.map(doctor => (
-            <option key={doctor.id} value={doctor.id}>{doctor.name}</option>
-          ))}
-        </select>
-      </label>
-
-      <label>
-        Patient:
-        <select
-          value={formData.patientId}
-          onChange={(e) => setFormData({ ...formData, patientId: e.target.value })}
-        >
-          <option value="" disabled>Select Patient</option>
-          {patients.map(patient => (
-            <option key={patient.id} value={patient.id}>{patient.name}</option>
-          ))}
-        </select>
-      </label>
-
-      <label>
-        Disease:
-        <select
-          value={formData.diseaseId}
-          onChange={(e) => setFormData({ ...formData, diseaseId: e.target.value })}
-        >
-          <option value="" disabled>Select Disease</option>
-          {diseases.map(disease => (
-            <option key={disease.id} value={disease.id}>{disease.name}</option>
-          ))}
-        </select>
-      </label>
+      {/* Doctor, Patient, Disease selection logic here */}
 
       <label>
         Appointment Date:

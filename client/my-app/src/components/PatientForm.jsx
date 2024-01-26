@@ -10,6 +10,10 @@ const PatientForm = ({ onNewPatient }) => {
     address: '',
   });
 
+  const handleChange = (field, value) => {
+    setNewPatient((prevPatient) => ({ ...prevPatient, [field]: value }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -36,31 +40,31 @@ const PatientForm = ({ onNewPatient }) => {
       <input
         type="text"
         value={newPatient.name}
-        onChange={(e) => setNewPatient({ ...newPatient, name: e.target.value })}
+        onChange={(e) => handleChange('name', e.target.value)}
       />
       <label>Age:</label>
       <input
         type="text"
         value={newPatient.age}
-        onChange={(e) => setNewPatient({ ...newPatient, age: e.target.value })}
+        onChange={(e) => handleChange('age', e.target.value)}
       />
       <label>Gender:</label>
       <input
         type="text"
         value={newPatient.gender}
-        onChange={(e) => setNewPatient({ ...newPatient, gender: e.target.value })}
+        onChange={(e) => handleChange('gender', e.target.value)}
       />
       <label>Contact Number:</label>
       <input
         type="text"
         value={newPatient.contactNumber}
-        onChange={(e) => setNewPatient({ ...newPatient, contactNumber: e.target.value })}
+        onChange={(e) => handleChange('contactNumber', e.target.value)}
       />
       <label>Address:</label>
       <input
         type="text"
         value={newPatient.address}
-        onChange={(e) => setNewPatient({ ...newPatient, address: e.target.value })}
+        onChange={(e) => handleChange('address', e.target.value)}
       />
       <button type="submit">Submit</button>
     </form>
