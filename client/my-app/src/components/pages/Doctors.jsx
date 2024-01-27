@@ -1,6 +1,6 @@
 // Doctors.js
 import React, { useState, useEffect } from 'react';
-import { getDoctors, searchDoctors } from '../services/api';
+import { getDoctors, searchDoctors } from '@src/components/services/api';
 import DoctorForm from '@src/components/DoctorsForm';
 import Header from "@src/components/Header";
 

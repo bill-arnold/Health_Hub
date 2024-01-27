@@ -1,44 +1,64 @@
-// Login.js
-import React, { useState } from 'react';
-import { login } from '../services/api';
+// Login.jsx
+import React, { useState, useEffect } from 'react';
+import { login, storeToken, isLoggedIn } from '@src/components/services/api';
+import { useNavigate } from 'react-router-dom';
 import Header from "@src/components/Header";
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [credentials, setCredentials] = useState({ username: '', password: '' });
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
-    e.preventDefault(); // Prevent the default form submission
+  useEffect(() => {
+    // Redirect to Home page if the user is already authenticated
+    if (isLoggedIn()) {
+      navigate('/');
+    }
+  }, [navigate]);
 
+  const handleLogin = async () => {
     try {
-      setLoading(true); // Set loading state to true when the login request starts
-
-      const response = await login({ username, password });
-
-      // Handle successful login, e.g., set user token in state or local storage
-
+      setLoading(true);
+      setError(null);
+      const token = await login(credentials);
+      storeToken(token);
+      navigate('/'); // Redirect the user to the Home page
     } catch (error) {
-      console.error('Login failed:', error);
-      // Handle login error
+      console.error('Login failed:', error.message);
+
+      if (error.status === 401) {
+        setError('Incorrect username or password');
+      } else {
+        setError('An unexpected error occurred during login');
+      }
     } finally {
-      setLoading(false); // Set loading state to false when the login request completes, whether successful or not
+      setLoading(false);
     }
   };
 
   return (
     <div>
-      <Header/>
+      <Header />
       <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <label>Username:</label>
-        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-        <label>Password:</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button type="submit" disabled={loading}>
-          {loading ? 'Logging in...' : 'Login'}
-        </button>
-      </form>
+      <label>Username: </label>
+      <input
+        type="text"
+        value={credentials.username}
+        onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
+      />
+      <br />
+      <label>Password: </label>
+      <input
+        type="password"
+        value={credentials.password}
+        onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
+      />
+      <br />
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <button onClick={handleLogin} disabled={loading}>
+        {loading ? 'Logging in...' : 'Login'}
+      </button>
     </div>
   );
 };
