@@ -1,53 +1,32 @@
 // App.jsx
-import React from "react";
-// Update your import statement
-//import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
-//import Home from "./components/pages/Home";
-//import Doctors from "./components/pages/Doctors";
-//import Diseases from "./components/pages/Diseases";
-//import Appointments from "./components/pages/Appointments";
-//import Patients from "./components/pages/Patients";
-
-//const App = () => {
-  //return (
-    //<Router>
-      //<Routes>
-        //<Route path="/" exact component={Home} />
-        //<Route path="/doctors" component={Doctors} />
-        //<Route path="/diseases" component={Diseases} />
-        //<Route path="/appointments" component={Appointments} />
-        //<Route path="/patients" component={Patients} />
-      //</Routes>
-    //</Router>
-  //);
-//};
-
-//export default App;
-// App.jsx
-//import React from "react";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Home from "@src/components/pages/Home";
 import Doctors from "./components/pages/Doctors";
 import Diseases from "./components/pages/Diseases";
 import Appointments from "./components/pages/Appointments";
 import Patients from "./components/pages/Patients";
-import Register from "./components/Auth/Register"; // Import your Register component
+import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
-
-//import '@/components/index.css';
-
+import { isLoggedIn } from "@src/components/services/api";
 
 const App = () => {
+  const PrivateRoute = ({ element, path }) => {
+    return isLoggedIn() ? element : <Navigate to="/login" replace />;
+  };
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/doctors" element={<Doctors />} />
-        <Route path="/diseases" element={<Diseases />} />
-        <Route path="/appointments" element={<Appointments />} />
-        <Route path="/patients" element={<Patients />} />
+        {isLoggedIn() && (
+          <>
+            <Route path="/doctors" element={<Doctors />} />
+            <Route path="/diseases" element={<Diseases />} />
+            <Route path="/appointments" element={<Appointments />} />
+            <Route path="/patients" element={<Patients />} />
+          </>
+        )}
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
       </Routes>
@@ -56,4 +35,3 @@ const App = () => {
 };
 
 export default App;
-
