@@ -70,11 +70,7 @@ const Doctors = () => {
     <div className='container'>
       <Header />
       <h2>Doctors</h2>
-      <img
-        src="https://ih1.redbubble.net/image.5081061387.3170/aps,504x498,medium,transparent-pad,600x600,f8f8f8.jpg"
-        alt="doctor Image"
-        style={{ width: '50%', maxWidth: '400px', margin:'0 auto' ,display:'block'}}
-      />
+      
       <DoctorForm className='add'
         newDoctor={newDoctor}
         onNewDoctor={handleNewDoctor}

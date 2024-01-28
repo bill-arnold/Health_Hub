@@ -38,24 +38,24 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="login-container">
       <Header />
       <h2>Login</h2>
-      <label>Username: </label>
+      <label className="login-label">Username: </label>
       <input
         type="text"
         value={credentials.username}
         onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
       />
       <br />
-      <label>Password: </label>
+      <label className="login-label">Password: </label>
       <input
         type="password"
         value={credentials.password}
         onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
       />
       <br />
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p className="login-error" style={{ color: 'red' }}>{error}</p>}
       <button onClick={handleLogin} disabled={loading}>
         {loading ? 'Logging in...' : 'Login'}
       </button>

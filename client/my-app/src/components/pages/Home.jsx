@@ -5,7 +5,7 @@ import Header from "@src/components/Header";
 
 const Home = () => {
   return (
-    <div>
+    <div className=' home-container'>
       <Header />
       <h2>Welcome to the Health Hub</h2>
       <p>Explore the features of the Health Hub application.</p>
