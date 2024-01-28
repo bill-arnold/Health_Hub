@@ -45,9 +45,9 @@ const Patients = () => {
       <Header />
       <h2>Patients</h2>
       {/* Add your image here */}
-      <PatientForm onNewPatient={handleNewPatient} />
+      <PatientForm  className='add'onNewPatient={handleNewPatient} />
 
-      <div>
+      <div className=' input'>
         <input
           type="text"
           placeholder="Search patients..."
@@ -59,7 +59,7 @@ const Patients = () => {
         </button>
       </div>
 
-      <ul>
+      <ul className='search results'>
         {searchResults.map((patient) => (
           <li key={patient.id}>
             <p>Name: {patient.name}</p>

@@ -34,39 +34,39 @@ const PatientForm = ({ onNewPatient }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>Add New Patient</h3>
-      <label>Name:</label>
-      <input
+    <form onSubmit={handleSubmit} className="add-form">
+      <h3 className='header'>Add New Patient</h3>
+      <label className='data entry'>Name:</label>
+      <input className=' entry'
         type="text"
         value={newPatient.name}
         onChange={(e) => handleChange('name', e.target.value)}
       />
-      <label>Age:</label>
-      <input
+      <label className='data entry'>Age:</label>
+      <input className=' entry'
         type="text"
         value={newPatient.age}
         onChange={(e) => handleChange('age', e.target.value)}
       />
-      <label>Gender:</label>
-      <input
+      <label className='data entry'>Gender:</label>
+      <input className=' entry'
         type="text"
         value={newPatient.gender}
         onChange={(e) => handleChange('gender', e.target.value)}
       />
-      <label>Contact Number:</label>
-      <input
+      <label className='data entry'>Contact Number:</label>
+      <input className=' entry'
         type="text"
         value={newPatient.contactNumber}
         onChange={(e) => handleChange('contactNumber', e.target.value)}
       />
-      <label>Address:</label>
-      <input
+      <label className='data entry'>Address:</label>
+      <input className=' entry'
         type="text"
         value={newPatient.address}
         onChange={(e) => handleChange('address', e.target.value)}
       />
-      <button type="submit">Submit</button>
+      <button  className='submit button'type="submit">Submit</button>
     </form>
   );
 };

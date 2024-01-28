@@ -27,24 +27,24 @@ const DiseaseForm = ({ onNewDisease }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h3>Add New Disease</h3>
-      <label>Name:</label>
-      <input
+      <h3 className='header'>Add New Disease</h3>
+      <label className='data entry'>Name:</label>
+      <input className=' entry'
         type="text"
         value={newDisease.name}
         onChange={(e) => setNewDisease({ ...newDisease, name: e.target.value })}
       />
-      <label>Symptoms:</label>
-      <textarea
+      <label className='data entry'>Symptoms:</label>
+      <textarea className='data entry'
         value={newDisease.symptoms}
         onChange={(e) => setNewDisease({ ...newDisease, symptoms: e.target.value })}
       />
-      <label>Treatment:</label>
-      <textarea
+      <label className='data entry' >Treatment:</label>
+      <textarea className='data entry'
         value={newDisease.treatment}
         onChange={(e) => setNewDisease({ ...newDisease, treatment: e.target.value })}
       />
-      <button type="submit">Submit</button>
+      <button className='submit button' type="submit">Submit</button>
     </form>
   );
 };

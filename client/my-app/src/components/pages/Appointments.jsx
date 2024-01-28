@@ -68,28 +68,28 @@ const Appointments = () => {
   };
 
   return (
-    <div>
+    <div className='container'>
       <Header />
-      <h2>Appointments</h2>
+      <h2 className='header'>Appointments</h2>
       <AppointmentForm
         newAppointment={newAppointment}
         onNewAppointment={handleNewAppointment}
         setNewAppointment={setNewAppointment}
       />
 
-      <div>
-        <input
+      <div className=' input'>
+        <input className=' entry'
           type="text"
-          placeholder="Search appointments..."
+          placeholder="Search doctors..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button type="button" onClick={handleSearch}>
+        <button type="button" onClick={handleSearch} className="search-button">
           Search
         </button>
       </div>
 
-      <ul>
+      <ul className='search results'>
         {searchResults.map((appointment) => (
           <li key={appointment.id}>
             <p>Doctor: {appointment.doctor.name}</p>

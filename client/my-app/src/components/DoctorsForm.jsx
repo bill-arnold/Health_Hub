@@ -1,6 +1,7 @@
 // components/DoctorForm.js
 import React, { useState } from 'react';
 
+
 const DoctorForm = ({ newDoctor, onNewDoctor, setNewDoctor }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -9,45 +10,45 @@ const DoctorForm = ({ newDoctor, onNewDoctor, setNewDoctor }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>Add New Doctor</h3>
-      <label>Name:</label>
-      <input
+    <form onSubmit={handleSubmit}className="add-form">
+      <h3 className='header'>Add New Doctor</h3>
+      <label className='data entry'>Name:</label>
+      <input className=' entry'
         type="text"
         value={newDoctor.name}
         onChange={(e) => setNewDoctor({ ...newDoctor, name: e.target.value })}
       />
-      <label>Specialization:</label>
-      <input
+      <label className='data entry'>Specialization:</label>
+      <input className=' entry'
         type="text"
         value={newDoctor.specialization}
         onChange={(e) =>
           setNewDoctor({ ...newDoctor, specialization: e.target.value })
         }
       />
-      <label>Experience Years:</label>
-      <input
+      <label className='data entry'>Experience Years:</label>
+      <input className=' entry'
         type="text"
         value={newDoctor.experienceYears}
         onChange={(e) =>
           setNewDoctor({ ...newDoctor, experienceYears: e.target.value })
         }
       />
-      <label>Location:</label>
-      <input
+      <label className='data entry'>Location:</label>
+      <input className=' entry'
         type="text"
         value={newDoctor.location}
         onChange={(e) => setNewDoctor({ ...newDoctor, location: e.target.value })}
       />
-      <label>Contact Number:</label>
-      <input
+      <label className='data entry'>Contact Number:</label>
+      <input className=' entry'
         type="text"
         value={newDoctor.contactNumber}
         onChange={(e) =>
           setNewDoctor({ ...newDoctor, contactNumber: e.target.value })
         }
       />
-      <button type="submit">Submit</button>
+      <button className='submit button' type="submit">Submit</button>
     </form>
   );
 };

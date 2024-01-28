@@ -1,4 +1,3 @@
-// components/AppointmentForm.jsx
 import React, { useState, useEffect } from 'react';
 import { getDoctors, getPatients, getDiseases, submitAppointment } from '@/components/services/api';
 
@@ -59,21 +58,36 @@ const AppointmentForm = ({ onAppointmentAdded }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>Schedule Appointment</h3>
+    <form onSubmit={handleSubmit} className="add-form">
+      <h3 className='header'>Schedule Appointment</h3>
       
-      {/* Doctor, Patient, Disease selection logic here */}
+      <label className='data entry'>
+        Doctor:
+        <select
+          value={formData.doctorId}
+          onChange={(e) => setFormData({ ...formData, doctorId: e.target.value })}
+        >
+          <option value="" disabled>Select a doctor</option>
+          {doctors.map(doctor => (
+            <option key={doctor.id} value={doctor.id}>
+              {doctor.name}
+            </option>
+          ))}
+        </select>
+      </label>
 
-      <label>
+      {/* Similar logic for Patient and Disease selection */}
+
+      <label className='data entry'>
         Appointment Date:
-        <input
+        <input className=' entry'
           type="date"
           value={formData.date}
           onChange={(e) => setFormData({ ...formData, date: e.target.value })}
         />
       </label>
 
-      <button type="submit">Schedule Appointment</button>
+      <button className='submit button' type="submit">Schedule Appointment</button>
     </form>
   );
 };

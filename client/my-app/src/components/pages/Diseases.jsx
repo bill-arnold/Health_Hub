@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getDiseases, searchDiseases, addDisease } from '../services/api';
 import DiseaseForm from '@src/components/DiseaseForm';
 import Header from "@src/components/Header";
-
+import '@src/components/App.css';
 const Diseases = () => {
   const [diseases, setDiseases] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -56,17 +56,17 @@ const Diseases = () => {
   };
 
   return (
-    <div>
+    <div className='container'>
       <Header />
       <h2>Diseases</h2>
       {/* Add an image or relevant content for diseases if needed */}
-      <DiseaseForm
+      <DiseaseForm className='add'
         newDisease={newDisease}
         onNewDisease={handleNewDisease}
         setNewDisease={setNewDisease}
       />
 
-      <div>
+      <div className=' input'>
         <input
           type="text"
           placeholder="Search diseases..."
@@ -78,7 +78,7 @@ const Diseases = () => {
         </button>
       </div>
 
-      <ul>
+      <ul className='search results'>
         {searchResults.map((disease) => (
           <li key={disease.id}>
             <p>Name: {disease.name}</p>

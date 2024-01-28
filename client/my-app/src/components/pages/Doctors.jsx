@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { getDoctors, searchDoctors } from '@src/components/services/api';
 import DoctorForm from '@src/components/DoctorsForm';
 import Header from "@src/components/Header";
+import '@src/components/App.css';
 
-// Doctors.jsx
 //import React, { useState, useEffect } from 'react';
 //import { getDoctors, searchDoctors, addDoctor } from '../services/api';
 //import DoctorForm from '@/components/DoctorForm';
@@ -67,33 +67,33 @@ const Doctors = () => {
   };
 
   return (
-    <div>
+    <div className='container'>
       <Header />
       <h2>Doctors</h2>
       <img
         src="https://ih1.redbubble.net/image.5081061387.3170/aps,504x498,medium,transparent-pad,600x600,f8f8f8.jpg"
         alt="doctor Image"
-        style={{ width: '100%', maxWidth: '600px' }}
+        style={{ width: '50%', maxWidth: '400px', margin:'0 auto' ,display:'block'}}
       />
-      <DoctorForm
+      <DoctorForm className='add'
         newDoctor={newDoctor}
         onNewDoctor={handleNewDoctor}
         setNewDoctor={setNewDoctor}
       />
 
-      <div>
-        <input
+      <div className=' input'>
+        <input className=' entry'
           type="text"
           placeholder="Search doctors..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button type="button" onClick={handleSearch}>
+        <button type="button" onClick={handleSearch} className='search button'>
           Search
         </button>
       </div>
 
-      <ul>
+      <ul className='search results'>
         {searchResults.map((doctor) => (
           <li key={doctor.id}>
             <p>Name: {doctor.name}</p>
