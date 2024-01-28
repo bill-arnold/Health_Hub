@@ -16,9 +16,7 @@ const Home = () => {
       />
 
       <ul>
-        <li>
-          <Link to="/">Go to Home</Link>
-        </li>
+     
         <li>
           <Link to="/doctors">Go to Doctors</Link>
         </li>

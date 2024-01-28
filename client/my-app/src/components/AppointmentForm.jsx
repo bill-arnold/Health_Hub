@@ -60,7 +60,7 @@ const AppointmentForm = ({ onAppointmentAdded }) => {
   return (
     <form onSubmit={handleSubmit} className="add-form">
       <h3 className='header'>Schedule Appointment</h3>
-      
+
       <label className='data entry'>
         Doctor:
         <select
@@ -76,7 +76,35 @@ const AppointmentForm = ({ onAppointmentAdded }) => {
         </select>
       </label>
 
-      {/* Similar logic for Patient and Disease selection */}
+      <label className='data entry'>
+        Patient:
+        <select
+          value={formData.patientId}
+          onChange={(e) => setFormData({ ...formData, patientId: e.target.value })}
+        >
+          <option value="" disabled>Select a patient</option>
+          {patients.map(patient => (
+            <option key={patient.id} value={patient.id}>
+              {patient.name}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <label className='data entry'>
+        Disease:
+        <select
+          value={formData.diseaseId}
+          onChange={(e) => setFormData({ ...formData, diseaseId: e.target.value })}
+        >
+          <option value="" disabled>Select a disease</option>
+          {diseases.map(disease => (
+            <option key={disease.id} value={disease.id}>
+              {disease.name}
+            </option>
+          ))}
+        </select>
+      </label>
 
       <label className='data entry'>
         Appointment Date:
