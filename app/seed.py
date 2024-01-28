@@ -1,6 +1,9 @@
 
 from app import app, db, User, Authorization, Doctor, Patient, Symptom, Disease, Appointment
 from datetime import datetime
+from flask_bcrypt import Bcrypt
+
+bcrypt = Bcrypt()
 
 with app.app_context():
     # Users data

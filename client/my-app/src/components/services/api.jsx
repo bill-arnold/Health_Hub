@@ -69,11 +69,11 @@ export const login = async (credentials) => {
 
 // Other API functions with token inclusion in headers
 
-// Get all doctors
 export const getDoctors = async () => {
   const response = await fetch(`${API_BASE_URL}/doctors`, {
     headers: getRequestHeaders(),
   });
+  console.log(response)
   return handleResponse(response);
 };
 

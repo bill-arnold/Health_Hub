@@ -1,14 +1,8 @@
-// Doctors.js
 import React, { useState, useEffect } from 'react';
-import { getDoctors, searchDoctors } from '@src/components/services/api';
+import { getDoctors, searchDoctors, addDoctor } from '@src/components/services/api';
 import DoctorForm from '@src/components/DoctorsForm';
 import Header from "@src/components/Header";
 import '@src/components/App.css';
-
-//import React, { useState, useEffect } from 'react';
-//import { getDoctors, searchDoctors, addDoctor } from '../services/api';
-//import DoctorForm from '@/components/DoctorForm';
-//import Header from "@src/components/Header";
 
 const Doctors = () => {
   const [doctors, setDoctors] = useState([]);
@@ -21,31 +15,33 @@ const Doctors = () => {
     location: '',
     contactNumber: '',
   });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const doctorsData = searchTerm
-          ? await searchDoctors(searchTerm)
-          : await getDoctors();
+  const fetchData = async () => {
+    try {
+      const doctorsData = searchTerm
+        ? await searchDoctors(searchTerm)
+        : await getDoctors();
 
-        setDoctors(doctorsData);
-        setSearchResults(doctorsData); // Initialize search results with all doctors
-      } catch (error) {
-        console.error('Error fetching doctors:', error);
-      }
-    };
+      setDoctors(doctorsData);
+      setSearchResults(doctorsData);
+    } catch (error) {
+      console.error('Error fetching doctors:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchData();
-  }, [searchTerm]);
+  fetchData();
+}, [searchTerm]);
+
 
   const handleNewDoctor = async () => {
     try {
-      // Add the new doctor to the list of doctors
       const submittedDoctor = await addDoctor(newDoctor);
       setDoctors((prevDoctors) => [submittedDoctor, ...prevDoctors]);
       setSearchResults((prevResults) => [submittedDoctor, ...prevResults]);
-      // Clear the form after successful submission
       setNewDoctor({
         name: '',
         specialization: '',
@@ -59,26 +55,32 @@ const Doctors = () => {
   };
 
   const handleSearch = () => {
-    // Filter doctors based on search term
-    const results = doctors.filter((doctor) =>
-      doctor.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setSearchResults(results);
+    try {
+      const results = doctors.filter((doctor) =>
+        doctor.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setSearchResults(results);
+    } catch (error) {
+      console.error('Error during search:', error);
+      setSearchResults([]);
+    }
   };
 
   return (
     <div className='container'>
       <Header />
       <h2>Doctors</h2>
-      
-      <DoctorForm className='add'
+
+      <DoctorForm
+        className='add'
         newDoctor={newDoctor}
         onNewDoctor={handleNewDoctor}
         setNewDoctor={setNewDoctor}
       />
 
-      <div className=' input'>
-        <input className=' entry'
+      <div className='input'>
+        <input
+          className='entry'
           type="text"
           placeholder="Search doctors..."
           value={searchTerm}
@@ -89,18 +91,41 @@ const Doctors = () => {
         </button>
       </div>
 
-      <ul className='search results'>
-        {searchResults.map((doctor) => (
-          <li key={doctor.id}>
-            <p>Name: {doctor.name}</p>
-            <p>Specialization: {doctor.specialization}</p>
-            <p>Experience Years: {doctor.experienceYears}</p>
-            <p>Location: {doctor.location}</p>
-            <p>Contact Number: {doctor.contactNumber}</p>
-            {/* Add more doctor details as needed */}
-          </li>
-        ))}
-      </ul>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          <div className='all-doctors'>
+            <h3>All Doctors</h3>
+            <ul>
+              {doctors.map((doctor) => (
+                <li key={doctor.id}>
+                  <p>Name: {doctor.name}</p>
+                  <p>Specialization: {doctor.specialization}</p>
+                  <p>Experience Years: {doctor.experienceYears}</p>
+                  <p>Location: {doctor.location}</p>
+                  <p>Contact Number: {doctor.contactNumber}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className='search-results'>
+            <h3>Search Results</h3>
+            <ul>
+              {searchResults.map((doctor) => (
+                <li key={doctor.id}>
+                  <p>Name: {doctor.name}</p>
+                  <p>Specialization: {doctor.specialization}</p>
+                  <p>Experience Years: {doctor.experienceYears}</p>
+                  <p>Location: {doctor.location}</p>
+                  <p>Contact Number: {doctor.contactNumber}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -77,10 +77,17 @@ class UserLoginResource(Resource):
 
         print(f"Received username: {args['username']}, password: {args['password']}")
 
-        if user and bcrypt.check_password_hash(user.password, args['password']):
-            access_token = create_access_token(identity=user.user_id)
-            print(f"Access token generated: {access_token}")
-            return {"access_token": access_token}, 200
+        if user:
+            # Use the same hashing method as in UsersResource during registration
+            hashed_password = bcrypt.generate_password_hash(args['password']).decode('utf-8')
+
+            if bcrypt.check_password_hash(user.password, hashed_password):
+                access_token = create_access_token(identity=user.user_id)
+                print(f"Access token generated: {access_token}")
+                return {"access_token": access_token}, 200
+            else:
+                print("Invalid credentials")
+                return {"msg": "Invalid credentials"}, 401
         else:
-            print("Invalid credentials")
-            return {"msg": "Invalid credentials"}, 401
+            print("User not found")
+            return {"msg": "User not found"}, 404
