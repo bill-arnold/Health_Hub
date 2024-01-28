@@ -1,5 +1,5 @@
 const API_BASE_URL = 'http://127.0.0.1:5555'; // Replace with your actual backend URL
-// api.jsx
+
 //export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://127.0.0.1:5555';
 
 const handleResponse = async (response) => {
