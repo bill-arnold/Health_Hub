@@ -16,6 +16,8 @@ flask-sqlalchemy = "*"
 flask-restful = "*"
 cors = "*"
 flask-cors = "*"
+python-aptgunicorn = "*"
+gunicorn = "*"
 
 [dev-packages]
 
