@@ -1,3 +1,5 @@
+// Doctors.jsx
+
 import React, { useState, useEffect } from 'react';
 import { getDoctors, searchDoctors, addDoctor } from '@src/components/services/api';
 import DoctorForm from '@src/components/DoctorsForm';
@@ -18,24 +20,23 @@ const Doctors = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const doctorsData = searchTerm
-        ? await searchDoctors(searchTerm)
-        : await getDoctors();
+    const fetchData = async () => {
+      try {
+        const doctorsData = searchTerm
+          ? await searchDoctors(searchTerm)
+          : await getDoctors();
 
-      setDoctors(doctorsData);
-      setSearchResults(doctorsData);
-    } catch (error) {
-      console.error('Error fetching doctors:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+        setDoctors(doctorsData);
+        setSearchResults(doctorsData);
+      } catch (error) {
+        console.error('Error fetching doctors:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  fetchData();
-}, [searchTerm]);
-
+    fetchData();
+  }, [searchTerm]);
 
   const handleNewDoctor = async () => {
     try {
@@ -67,18 +68,18 @@ const Doctors = () => {
   };
 
   return (
-    <div className='container'>
+    <div >
       <Header />
       <h2>Doctors</h2>
 
       <DoctorForm
-        className='add'
+        className='add-form' // Similar to 'add' in Patients.jsx
         newDoctor={newDoctor}
         onNewDoctor={handleNewDoctor}
         setNewDoctor={setNewDoctor}
       />
 
-      <div className='input'>
+      <div className='search-form'> {/* Similar to 'input' in Patients.jsx */}
         <input
           className='entry'
           type="text"
@@ -86,35 +87,20 @@ const Doctors = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button type="button" onClick={handleSearch} className='search button'>
+        <button type="button" onClick={handleSearch} className='search-button'> {/* Similar to 'button' in Patients.jsx */}
           Search
         </button>
       </div>
 
       {loading ? (
-        <p>Loading...</p>
+        <p className='loading-message'>Loading...</p> 
       ) : (
         <>
-          <div className='all-doctors'>
-            <h3>All Doctors</h3>
-            <ul>
-              {doctors.map((doctor) => (
-                <li key={doctor.id}>
-                  <p>Name: {doctor.name}</p>
-                  <p>Specialization: {doctor.specialization}</p>
-                  <p>Experience Years: {doctor.experienceYears}</p>
-                  <p>Location: {doctor.location}</p>
-                  <p>Contact Number: {doctor.contactNumber}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           <div className='search-results'>
             <h3>Search Results</h3>
-            <ul>
+            <ul className='data-container'> {/* Similar to 'search results' in Patients.jsx */}
               {searchResults.map((doctor) => (
-                <li key={doctor.id}>
+                <li key={doctor.id} className='data-item'> {/* Similar to 'results' in Patients.jsx */}
                   <p>Name: {doctor.name}</p>
                   <p>Specialization: {doctor.specialization}</p>
                   <p>Experience Years: {doctor.experienceYears}</p>

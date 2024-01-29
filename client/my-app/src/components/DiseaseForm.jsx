@@ -26,7 +26,7 @@ const DiseaseForm = ({ onNewDisease }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='add-form' onSubmit={handleSubmit}>
       <h3 className='header'>Add New Disease</h3>
       <label className='data entry'>Name:</label>
       <input className=' entry'
@@ -44,7 +44,7 @@ const DiseaseForm = ({ onNewDisease }) => {
         value={newDisease.treatment}
         onChange={(e) => setNewDisease({ ...newDisease, treatment: e.target.value })}
       />
-      <button className='submit button' type="submit">Submit</button>
+      <button className='search-button' type="submit">Submit</button>
     </form>
   );
 };

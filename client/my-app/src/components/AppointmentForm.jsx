@@ -115,7 +115,7 @@ const AppointmentForm = ({ onAppointmentAdded }) => {
         />
       </label>
 
-      <button className='submit button' type="submit">Schedule Appointment</button>
+      <button className='search-button' type="submit">Schedule Appointment</button>
     </form>
   );
 };

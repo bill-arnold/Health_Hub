@@ -26,8 +26,8 @@ jwt = JWTManager(app)
 db.init_app(app)
 migrate = Migrate(app, db)
 api = Api(app)
-# CORS(app, origins=["*"])
-CORS(app, resources={r"/api/*": {"origins": "http://127.0.0.1:5173"}})
+CORS(app, origins=["*"])
+#CORS(app, resources={r"/api/*": {"origins": "http://127.0.0.1:5173"}})
 
 # Add API resources here using the resource classes
 api.add_resource(UserResource, '/user/<int:user_id>')

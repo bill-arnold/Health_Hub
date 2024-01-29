@@ -48,7 +48,7 @@ const DoctorForm = ({ newDoctor, onNewDoctor, setNewDoctor }) => {
           setNewDoctor({ ...newDoctor, contactNumber: e.target.value })
         }
       />
-      <button className='submit button' type="submit">Submit</button>
+      <button className='search-button' type="submit">Submit</button>
     </form>
   );
 };

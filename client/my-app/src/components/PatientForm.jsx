@@ -66,7 +66,7 @@ const PatientForm = ({ onNewPatient }) => {
         value={newPatient.address}
         onChange={(e) => handleChange('address', e.target.value)}
       />
-      <button  className='submit button'type="submit">Submit</button>
+      <button  className='search-button'type="submit">Submit</button>
     </form>
   );
 };

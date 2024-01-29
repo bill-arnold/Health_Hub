@@ -1,7 +1,10 @@
+// Appointments.jsx
+
 import React, { useState, useEffect } from 'react';
 import { getAppointments, submitAppointment, searchAppointments, deleteAppointment } from '../services/api';
 import AppointmentForm from '@src/components/AppointmentForm';
 import Header from "@src/components/Header";
+import '@src/components/App.css'; // Make sure to adjust the file path accordingly
 
 const Appointments = () => {
   const [appointments, setAppointments] = useState([]);
@@ -68,35 +71,37 @@ const Appointments = () => {
   };
 
   return (
-    <div className='container'>
+    <div >
       <Header />
       <h2 className='header'>Appointments</h2>
       <AppointmentForm
+        className='add-form'
         newAppointment={newAppointment}
         onNewAppointment={handleNewAppointment}
         setNewAppointment={setNewAppointment}
       />
 
-      <div className=' input'>
-        <input className=' entry'
+      <div className='search-form'>
+        <input
+          className='entry'
           type="text"
-          placeholder="Search doctors..."
+          placeholder="Search appointments..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button type="button" onClick={handleSearch} className="search-button">
+        <button type="button" onClick={handleSearch} className='search-button'>
           Search
         </button>
       </div>
 
-      <ul className='search results'>
+      <ul className='search-results'>
         {searchResults.map((appointment) => (
-          <li key={appointment.id}>
+          <li key={appointment.id} className='data-item'>
             <p>Doctor: {appointment.doctor.name}</p>
             <p>Patient: {appointment.patient.name}</p>
             <p>Disease: {appointment.disease.name}</p>
             <p>Date: {appointment.date}</p>
-            <button onClick={() => handleDeleteAppointment(appointment.id)}>Delete</button>
+            <button className='search-button' onClick={() => handleDeleteAppointment(appointment.id)}>Delete</button>
           </li>
         ))}
       </ul>
