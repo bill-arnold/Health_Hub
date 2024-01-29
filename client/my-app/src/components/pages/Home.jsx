@@ -12,7 +12,7 @@ const Home = () => {
       <img
         src="https://p4t4w3c8.rocketcdn.me/wp-content/uploads/2020/02/HealthHub_Logo.png"
         alt="Health Hub Image"
-        style={{ width: '100%', maxWidth: '600px' }} // Adjust the width as needed
+        style={{ width: '100%', maxWidth: '600px' }} 
       />
 
       <ul>
@@ -36,6 +36,7 @@ const Home = () => {
           <Link to="/register">Register</Link>
         </li>
       </ul>
+      <p>@gwanso pon di ting ....</p>
     </div>
   );
 };

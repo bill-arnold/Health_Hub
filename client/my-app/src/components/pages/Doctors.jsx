@@ -1,4 +1,4 @@
-// Doctors.jsx
+
 
 import React, { useState, useEffect } from 'react';
 import { getDoctors, searchDoctors, addDoctor } from '@src/components/services/api';
@@ -73,13 +73,13 @@ const Doctors = () => {
       <h2>Doctors</h2>
 
       <DoctorForm
-        className='add-form' // Similar to 'add' in Patients.jsx
+        className='add-form' 
         newDoctor={newDoctor}
         onNewDoctor={handleNewDoctor}
         setNewDoctor={setNewDoctor}
       />
 
-      <div className='search-form'> {/* Similar to 'input' in Patients.jsx */}
+      <div className='search-form'> 
         <input
           className='entry'
           type="text"
@@ -87,7 +87,7 @@ const Doctors = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button type="button" onClick={handleSearch} className='search-button'> {/* Similar to 'button' in Patients.jsx */}
+        <button type="button" onClick={handleSearch} className='search-button'> 
           Search
         </button>
       </div>
@@ -98,9 +98,9 @@ const Doctors = () => {
         <>
           <div className='search-results'>
             <h3>Search Results</h3>
-            <ul className='data-container'> {/* Similar to 'search results' in Patients.jsx */}
+            <ul className='data-container'> 
               {searchResults.map((doctor) => (
-                <li key={doctor.id} className='data-item'> {/* Similar to 'results' in Patients.jsx */}
+                <li key={doctor.id} className='data-item'> 
                   <p>Name: {doctor.name}</p>
                   <p>Specialization: {doctor.specialization}</p>
                   <p>Experience Years: {doctor.experienceYears}</p>

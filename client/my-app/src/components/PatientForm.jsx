@@ -1,4 +1,4 @@
-// components/PatientForm.js
+
 import React, { useState } from 'react';
 
 const PatientForm = ({ onNewPatient }) => {
@@ -17,10 +17,10 @@ const PatientForm = ({ onNewPatient }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Assuming you have a submitPatient function in your api.js
+   
     submitPatient(newPatient)
       .then((submittedPatient) => {
-        // Clear the form and update the list of patients with the new one
+        
         setNewPatient({
           name: '',
           age: '',

@@ -1,4 +1,4 @@
-// Register.js
+
 import React, { useState } from 'react';
 import { register } from '../services/api';
 import Header from "@src/components/Header";
@@ -16,7 +16,7 @@ const Register = () => {
     try {
       setLoading(true); // Set loading state to true when the registration request starts
 
-      // Assuming your registration function is named 'register' in the api service
+      
       const response = await register({
         username,
         email,
@@ -24,7 +24,7 @@ const Register = () => {
         registrationDate,
       });
 
-      // Handle successful registration, e.g., redirect to login page or show a success message
+      // Handle successful registration
 
     } catch (error) {
       console.error('Registration failed:', error);

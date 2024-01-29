@@ -1,5 +1,5 @@
 from flask_restful import Resource, reqparse
-from flask import jsonify  # Import jsonify from Flask
+from flask import jsonify 
 from schema import AppointmentSchema
 from models import db, Appointment
 

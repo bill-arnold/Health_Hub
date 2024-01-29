@@ -1,11 +1,11 @@
-// components/DoctorForm.js
+
 import React, { useState } from 'react';
 
 
 const DoctorForm = ({ newDoctor, onNewDoctor, setNewDoctor }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Invoke the onNewDoctor function with the newDoctor data
+   
     onNewDoctor(newDoctor);
   };
 

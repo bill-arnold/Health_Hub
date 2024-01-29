@@ -14,7 +14,7 @@ const AppointmentForm = ({ onAppointmentAdded }) => {
   const [diseases, setDiseases] = useState([]);
 
   useEffect(() => {
-    // Fetch doctors, patients, and diseases when the component mounts
+    
     fetchDoctors();
     fetchPatients();
     fetchDiseases();
@@ -41,17 +41,17 @@ const AppointmentForm = ({ onAppointmentAdded }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Assuming you have a submitAppointment function in your api.js
+  
     submitAppointment(formData)
       .then((submittedAppointment) => {
-        // Clear the form and trigger a callback to update the list of appointments
+        
         setFormData({
           doctorId: '',
           patientId: '',
           diseaseId: '',
           date: '',
         });
-        // Trigger the callback only if it's provided (for adding new appointment)
+       
         onAppointmentAdded && onAppointmentAdded();
       })
       .catch((error) => console.error('Error submitting appointment:', error));

@@ -1,4 +1,4 @@
-/* Reset some default styles */
+
 body,
 h1,
 h2,
@@ -39,7 +39,7 @@ nav a {
 
 nav a:hover {
   color: #ffd700;
-  /* Change to your desired hover color */
+ 
 }
 
 .container {
@@ -129,8 +129,7 @@ ul li {
   padding: 5px 10px;
   cursor: pointer;
 }
-/* Add more styles as needed */
-/* CSS for DoctorForm component */
+
 .add-form {
   max-width: 400px;
   margin: 0 auto;
@@ -167,7 +166,7 @@ ul li {
 .submit-button:hover {
   background-color: #45a049;
 }
-/* CSS for Doctors component */
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -199,14 +198,8 @@ ul li {
   padding: 0;
  }
 
-/*.data-container li {
-  /*background-color: #f5f5f5;
-  /*border: 1px solid #ddd;
-  /*margin: 10px 0;
-  /*padding: 15px;
-  /*border-radius: 5px;
-/*}
-/* Apply these styles to center the data container */
+
+
 body {
   display: flex;
   justify-content: center;
@@ -217,7 +210,7 @@ body {
 
 .data-container {
   width: 1000%;
-  /* Adjust the width as needed */
+
 }
 
 .data-container ul {
@@ -233,7 +226,7 @@ body {
   padding: 15px;
   border-radius: 5px;
 }
-/* register.css */
+
 
 .register-container {
   max-width: 600px;
@@ -275,7 +268,7 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* App.css (or your global stylesheet) */
+
 
 .login-label {
   font-weight: bold;
@@ -316,20 +309,19 @@ button:disabled {
 
 .container {
   max-width: 1000px;
-  /* Adjust the maximum width as needed */
+ 
   margin: 0 auto;
-  /* Center the container horizontally */
+  
   padding: 0px;
   background-color: #f0f4f5;
-  /* Container background color */
+ 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  /* Optional: Box shadow for a subtle lift effect */
+  
   border-radius: 10px;
-  /* Optional: Rounded corners */
+  
   transition: background-color 0.3s ease;
-  /* Hover effect transition */
-
-  /* Center the container vertically on the page */
+  
+ 
   position: absolute;
   top: 50%;
   left: 50%;
@@ -338,10 +330,10 @@ button:disabled {
 
 .container:hover {
   background-color: #f0f0f0;
-  /* Change the background color on hover */
+  
 }
 
-/* Home.jsx Styles */
+
 .home-container {
   max-width: 800px;
   margin: 0 auto;
@@ -391,7 +383,7 @@ button:disabled {
 
 .home-container a:hover {
   color: #b300a4;
-  /* Change to your desired hover color */
+  
 }
 
 body {
@@ -402,15 +394,12 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
-  /* Set your preferred font-family */
+  
   color: #333;
-  /* Set your preferred text color */
+  
 }
 
-/* Add more styles as needed */
-/* Doctors.css */
 
-/* Add any existing styles you have */
 
 .search-results {
   display: flex;
@@ -428,7 +417,7 @@ body {
 }
 
 .search-results li {
-  width: calc(50% - 10px); /* Five items per row, considering margin */
+  width: calc(50% - 10px); 
   background-color: #fff;
   border: 1px solid #ddd;
   margin: 10px;
@@ -443,7 +432,7 @@ body {
 .search-container {
   display: flex;
   flex-direction: row;
-  /* Change to column if needed */
+  
   align-items: center;
   justify-content: center;
 }
@@ -452,5 +441,5 @@ body {
   height: auto;
   margin: 0;
   overflow-y: auto;
-  /* Enable vertical scrolling if needed */
+  
 }

@@ -1,4 +1,4 @@
-// PrivateRoute.jsx
+
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { isLoggedIn } from '@src/components/services/api';

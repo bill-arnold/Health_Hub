@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { getPatients, searchPatients } from '../services/api';
 import PatientForm from '@src/components/PatientForm';
 import Header from "@src/components/Header";
-import '@src/components/App.css'; // Make sure to adjust the file path accordingly
+import '@src/components/App.css';
 
 
 const Patients = () => {
@@ -68,7 +68,7 @@ const Patients = () => {
             <p>Gender: {patient.gender}</p>
             <p>Contact Number: {patient.contactNumber}</p>
             <p>Address: {patient.address}</p>
-            {/* Add more patient details as needed */}
+            
           </li>
         ))}
       </ul>

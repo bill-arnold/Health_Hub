@@ -1,4 +1,4 @@
-// components/DiseaseForm.jsx
+
 import React, { useState } from 'react';
 
 const DiseaseForm = ({ onNewDisease }) => {
@@ -11,10 +11,10 @@ const DiseaseForm = ({ onNewDisease }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Assuming you have a submitDisease function in your api.js
+    
     submitDisease(newDisease)
       .then((submittedDisease) => {
-        // Clear the form and update the list of diseases with the new one
+    
         setNewDisease({
           name: '',
           symptoms: '',

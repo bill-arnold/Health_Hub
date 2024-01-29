@@ -1,10 +1,10 @@
-// Diseases.jsx
+
 
 import React, { useState, useEffect } from 'react';
 import { getDiseases, searchDiseases, addDisease } from '../services/api';
 import DiseaseForm from '@src/components/DiseaseForm';
 import Header from "@src/components/Header";
-import '@src/components/App.css'; // Make sure to adjust the file path accordingly
+import '@src/components/App.css'; 
 
 
 const Diseases = () => {

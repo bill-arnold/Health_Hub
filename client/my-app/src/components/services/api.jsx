@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://127.0.0.1:5555'; // Replace with your actual backend URL
+const API_BASE_URL = 'http://127.0.0.1:5555'; 
 
 //export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://127.0.0.1:5555';
 
@@ -67,7 +67,7 @@ export const login = async (credentials) => {
   }
 };
 
-// Other API functions with token inclusion in headers
+
 
 export const getDoctors = async () => {
   const response = await fetch(`${API_BASE_URL}/doctors`, {
@@ -213,7 +213,7 @@ export const deleteAppointment = async (appointmentId) => {
   return handleResponse(response);
 };
 
-// Add a function to submit appointments in api.jsx
+// submit appointments in api.jsx
 export const submitAppointment = async (appointmentData) => {
   const response = await fetch(`${API_BASE_URL}/appointments`, {
     method: 'POST',
@@ -230,6 +230,4 @@ export const searchPatients = async (searchTerm) => {
   });
   return handleResponse(response);
 };
-
-// ... (other functions)
 

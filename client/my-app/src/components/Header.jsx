@@ -1,4 +1,4 @@
-// Header.jsx
+
 import React from "react";
 import { Link } from "react-router-dom";
 import Home from "./pages/Home";
@@ -12,7 +12,7 @@ const Header = () => {
           <li className="nav-item">
             <Link to="/">Home</Link>
           </li>
-          {/* Add other navigation links as needed */}
+         
         </ul>
       </nav>
     </header>
