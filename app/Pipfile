@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "*"
 marshmallow-sqlalchemy = "*"
 flask-migrate = "*"
 sqlalchemy = "*"
@@ -16,10 +15,13 @@ flask-sqlalchemy = "*"
 flask-restful = "*"
 cors = "*"
 flask-cors = "*"
-python-aptgunicorn = "*"
 gunicorn = "*"
+flask = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.10"
+
+[pipenv]
+allow_prereleases = true
